@@ -1,0 +1,10 @@
+controlador\ControladorConNavegabilidad.class
+pojo\Mercancia.class
+modelo\UsuarioDAO.class
+pojo\Usuario.class
+main\Main.class
+modelo\MercanciaDAO.class
+vista\LayoutPane.class
+controlador\ControladorLogin.class
+controlador\ControladorMercancia.class
+modelo\MySQLconexion.class

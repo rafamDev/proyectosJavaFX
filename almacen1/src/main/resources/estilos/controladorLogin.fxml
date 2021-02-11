@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorLogin">
+    <Panel styleClass="panel-primary">
+        <heading>
+            <Label styleClass="h3" text="Login"/>
+        </heading>    
+        <body>
+            <GridPane vgap="15" hgap="5">
+               <ImageView GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="4">
+                  <Image url="@../../../img/ok.png"/>
+               </ImageView>
+                 <Text fx:id="error" GridPane.columnIndex="1" GridPane.rowIndex="0" fill="RED" GridPane.columnSpan="2"/>
+                 <Text text="Nombre de usuario:" GridPane.columnIndex="1" GridPane.rowIndex="1"/>    
+                 <TextField fx:id="nombreUsuario" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                 <Text text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="2"/>  
+                 <PasswordField fx:id="password" GridPane.columnIndex="2" GridPane.rowIndex="2"/>  
+                    <HBox spacing="15" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Button text="Iniciar Sesion" onAction="#login" styleClass="btn-primary"/>
+                        <Button text="Cancelar" onAction="#cancelar" styleClass="btn-danger"/>
+                    </HBox>
+            </GridPane>
+        </body>
+    </Panel>                
+</StackPane>
