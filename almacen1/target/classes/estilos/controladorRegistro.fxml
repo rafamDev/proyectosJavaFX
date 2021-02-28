@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<VBox styleClass="VBox" prefHeight="438.0" prefWidth="258.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorRegistro">
+    <Panel styleClass="panel-primary">
+        <heading>
+            <Label styleClass="h3" text="Registro de usuario"/>
+        </heading>  
+    </Panel>   
+           <GridPane vgap="40" hgap="5">
+                 <Text fx:id="error" GridPane.columnIndex="1" GridPane.rowIndex="0" fill="RED" GridPane.columnSpan="2">
+                    <GridPane.margin>
+                       <Insets top="5.0"/>
+                   </GridPane.margin>
+                 </Text>    
+                 <Text styleClass="requiredData" text="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1"/>    
+                 <TextField fx:id="nombre" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                 <Text styleClass="requiredData" text="Apellido" GridPane.columnIndex="1" GridPane.rowIndex="2"/>    
+                 <TextField fx:id="apellido" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                 <Text styleClass="requiredData" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="3"/>  
+                 <PasswordField fx:id="password" GridPane.columnIndex="2" GridPane.rowIndex="3"/> 
+                 <Text styleClass="requiredData" text="Seccion" GridPane.columnIndex="1" GridPane.rowIndex="4"/>    
+                 <ComboBox fx:id="seccion" prefHeight="15.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                       <items>
+                         <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="seccion 1" />
+                          <String fx:value="seccion 2" />
+                          <String fx:value="seccion 3" />
+                         </FXCollections>
+                       </items>
+                       <GridPane.margin>
+                        <Insets left="10.0"/>
+                     </GridPane.margin>
+                 </ComboBox>     
+                 <Text styleClass="requiredData" text="Administrador" GridPane.columnIndex="1" GridPane.rowIndex="5"> 
+                   <GridPane.margin>
+                       <Insets bottom="10.0"/>
+                   </GridPane.margin>
+                 </Text>      
+                 <HBox prefHeight="15.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <children>
+                        <RadioButton fx:id="radioSi" text="Si">
+                           <HBox.margin>
+                              <Insets left="35.0" bottom="10.0"/>
+                           </HBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="radioNo" text="No">
+                          <HBox.margin>
+                              <Insets left="25.0" bottom="10.0"/>
+                           </HBox.margin>
+                        </RadioButton>
+                     </children>
+                 </HBox>
+                  
+            </GridPane>
+              <HBox prefHeight="50.0" prefWidth="150.0" styleClass="btns" spacing="10">
+                   <Button text="Registrar" styleClass="btn-primary" onAction="#registrar">
+                     <HBox.margin>
+                        <Insets top="20.0" left="100" /> 
+                     </HBox.margin>
+                    </Button>
+                    <Button text="Cancelar" styleClass="btn-danger" onAction="#cancelar">
+                       <HBox.margin>
+                          <Insets top="20.0" right="4.0"/> 
+                     </HBox.margin>
+                    </Button>    
+              </HBox>
+</VBox>

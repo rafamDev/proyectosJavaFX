@@ -27,11 +27,15 @@ and open the template in the editor.
 }
 
 .menuTXT .label{
-    -fx-text-fill: greenyellow;
+  -fx-text-fill: greenyellow;
 }
 
 .boton-invisible{
  -fx-background-color: darkblue;
+}
+
+.btns{
+  -fx-background-color: #45B39D;   
 }
 
 .txtUser{
@@ -54,4 +58,3 @@ and open the template in the editor.
 .requiredData{
  -fx-underline: true;
 }
-

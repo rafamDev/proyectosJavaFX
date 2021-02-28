@@ -24,7 +24,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import modelo.MercanciaDAO;
 import pojo.Mercancia;
 
@@ -296,6 +299,27 @@ public class ControladorMercancia extends ControladorConNavegabilidad implements
           }
           this.desactivarBotones();
     }
+    
+    public void mostrarPantallaChart(){
+        nuevaPantalla("grafica","/img/icono.png")
+            .addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, evento -> {
+                nuevaPantalla("almacen", "/img/icono.png");
+            });
+
+    }
+   
+     private Stage nuevaPantalla(String pantalla,String rutaImagen){
+       Stage ventana = (Stage) this.layout.getScene().getWindow();
+       ventana.hide();
+       this.layout.mostrarComoPantallaActual(pantalla);
+       ventana = new Stage();
+       ventana.setScene(this.layout.getScene());
+       ventana.getIcons().add(new Image(rutaImagen)); 
+       ventana.setResizable(false);
+       ventana.show();
+       return ventana;
+    }
+   
     
     public static int getCodigo() {
         return codigo;

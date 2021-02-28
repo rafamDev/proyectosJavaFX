@@ -5,8 +5,11 @@
  */
 package controlador;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -18,7 +21,7 @@ import modelo.UsuarioDAO;
  *
  * @author rafam
  */
-public class ControladorLogin extends ControladorConNavegabilidad {
+public class ControladorLogin extends ControladorConNavegabilidad implements Initializable{
     
     private UsuarioDAO usuarioDAO;
     
@@ -31,31 +34,37 @@ public class ControladorLogin extends ControladorConNavegabilidad {
     @FXML
     Text error;
     
-    public ControladorLogin(){
-        this.usuarioDAO = new UsuarioDAO();
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+       this.usuarioDAO = new UsuarioDAO();
     }
-    
+
     public void login(){
-       boolean loginOK = usuarioDAO.verficarUsuario(nombreUsuario.getText(), password.getText());
+       boolean loginOK = this.usuarioDAO.verficarUsuario(this.nombreUsuario.getText(), this.password.getText());
        if(loginOK == true){
-          Stage ventana = (Stage) this.layout.getScene().getWindow();
-          ventana.hide();
-          this.layout.mostrarComoPantallaActual("almacen");
-          ventana = new Stage();
-          ventana.setScene(this.layout.getScene());
-          ventana.getIcons().add(new Image("/img/icono.png")); 
-          ventana.show();
+         this.abrirPantalla("almacen","/img/icono.png");
        }else{
-          error.setText("Las credenciales ingresadas son incorrectas");
+          this.error.setText("Las credenciales ingresadas son incorrectas");
        }
     }
     
+    public void registro(){
+      this.abrirPantalla("registro","/img/icono.png");
+    }
+    
     public void cancelar(){
-        Platform.exit();
+      Platform.exit();
     }
 
-    public String getUsuario() {return this.nombreUsuario.getText();}
-
-    public String getPassword() {return this.password.getText();}
+    private void abrirPantalla(String pantalla,String rutaImagen){
+       Stage ventana = (Stage) this.layout.getScene().getWindow();
+       ventana.hide();
+       this.layout.mostrarComoPantallaActual(pantalla);
+       ventana = new Stage();
+       ventana.setScene(this.layout.getScene());
+       ventana.getIcons().add(new Image(rutaImagen)); 
+       ventana.setResizable(false);
+       ventana.show();
+    }
 
 }

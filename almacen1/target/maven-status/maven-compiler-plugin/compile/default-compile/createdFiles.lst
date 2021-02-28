@@ -1,4 +1,5 @@
 controlador\ControladorConNavegabilidad.class
+controlador\ControladorGrafica.class
 pojo\Mercancia.class
 modelo\UsuarioDAO.class
 pojo\Usuario.class
@@ -7,4 +8,5 @@ modelo\MercanciaDAO.class
 vista\LayoutPane.class
 controlador\ControladorLogin.class
 controlador\ControladorMercancia.class
+controlador\ControladorRegistro.class
 modelo\MySQLconexion.class

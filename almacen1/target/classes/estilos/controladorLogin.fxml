@@ -9,27 +9,38 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorLogin">
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorLogin" styleClass="VBox" prefHeight="185.0" prefWidth="395.0">
     <Panel styleClass="panel-primary">
         <heading>
             <Label styleClass="h3" text="Login"/>
         </heading>    
-        <body>
+     </Panel>   
             <GridPane vgap="15" hgap="5">
                <ImageView GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="4">
-                  <Image url="@../../../img/ok.png"/>
+                  <Image url="/img/login.png" />
                </ImageView>
                  <Text fx:id="error" GridPane.columnIndex="1" GridPane.rowIndex="0" fill="RED" GridPane.columnSpan="2"/>
-                 <Text text="Nombre de usuario:" GridPane.columnIndex="1" GridPane.rowIndex="1"/>    
-                 <TextField fx:id="nombreUsuario" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                 <Text text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="2"/>  
-                 <PasswordField fx:id="password" GridPane.columnIndex="2" GridPane.rowIndex="2"/>  
-                    <HBox spacing="15" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                 <Text text="Nombre:" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    
+                 </Text>    
+                 <TextField fx:id="nombreUsuario" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  
+                 </TextField>
+                 <Text text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  
+                 </Text>     
+                 <PasswordField fx:id="password" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    
+                 </PasswordField>    
+                    <HBox spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="3">
                         <Button text="Iniciar Sesion" onAction="#login" styleClass="btn-primary"/>
+                        <Button text="Registrarse" onAction="#registro" styleClass="btn-success"/>
                         <Button text="Cancelar" onAction="#cancelar" styleClass="btn-danger"/>
                     </HBox>
             </GridPane>
-        </body>
-    </Panel>                
-</StackPane>
+                 
+</VBox>

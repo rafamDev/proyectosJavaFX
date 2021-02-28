@@ -61,12 +61,12 @@
      <children>    
      <MenuBar styleClass="menuBar" prefHeight="10.0" prefWidth="50.0" HBox.hgrow="ALWAYS">
          <Menu text="Usuarios">     
-            <MenuItem text="Ver usuarios" />
+            <MenuItem text="Ver usuarios por seccion" onAction="#mostrarPantallaChart" />
          </Menu>
          <Menu text="Historico">
             <MenuItem text="Ver mercancias eliminadas" />
          </Menu>
-       </MenuBar> 
+         </MenuBar> 
      </children>
     </HBox>  
       
