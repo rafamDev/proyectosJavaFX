@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package controlador;
 
+package controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,14 +22,10 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import javafx.stage.StageStyle;
 import modelo.MercanciaDAO;
 import pojo.Mercancia;
 
-/**
- *
- * @author rafamDev
- */
 public class ControladorMercancia extends ControladorConNavegabilidad implements Initializable{
     @FXML
     TextField txtCodigo;
@@ -87,6 +78,7 @@ public class ControladorMercancia extends ControladorConNavegabilidad implements
        this.cargarMercanciasBDD();
        this.estadoBotones();
        this.crearIndicaciones();
+       this.controlarRadioButton();
     }
   
     private RadioButton radioButtonSeleccionado(){
@@ -97,6 +89,11 @@ public class ControladorMercancia extends ControladorConNavegabilidad implements
      return radioButtonSeleccionado;
     }
 
+    private void controlarRadioButton(){
+      this.radioPerecedera.disableProperty().bind(this.radioPerdurable.selectedProperty());
+      this.radioPerdurable.disableProperty().bind(this.radioPerecedera.selectedProperty()); 
+    }
+    
     private void dialogoInformacion(String funcion){
        Alert dialogoInformacion = new Alert(Alert.AlertType.INFORMATION);
         if(funcion.equals("guardar")){
@@ -301,28 +298,33 @@ public class ControladorMercancia extends ControladorConNavegabilidad implements
     }
     
     public void mostrarPantallaChart(){
-        nuevaPantalla("grafica","/img/icono.png")
-            .addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, evento -> {
-                nuevaPantalla("almacen", "/img/icono.png");
-            });
-
+        HiloVentana hiloGrafica = new HiloVentana("Secciones");
+        hiloGrafica.setRutaFXML("/estilos/controladorGrafica.fxml");
+        hiloGrafica.setRuta_icono("/img/icono.png");
+        hiloGrafica.run();
     }
    
-     private Stage nuevaPantalla(String pantalla,String rutaImagen){
+    public void mostrarMercanciasEliminadas(){
+       HiloVentana hiloMercEliminadas = new HiloVentana("Mercancias eliminadas");
+       hiloMercEliminadas.setRutaFXML("/estilos/controladorMercEliminadas.fxml");
+       hiloMercEliminadas.setRuta_icono("/img/borrar.png");
+       hiloMercEliminadas.run();
+    }
+    
+    public void cambiarDeUsuario(){
        Stage ventana = (Stage) this.layout.getScene().getWindow();
        ventana.hide();
-       this.layout.mostrarComoPantallaActual(pantalla);
+       this.layout.mostrarComoPantallaActual("login");
        ventana = new Stage();
        ventana.setScene(this.layout.getScene());
-       ventana.getIcons().add(new Image(rutaImagen)); 
+       ventana.getIcons().add(new Image("/img/login.png")); 
        ventana.setResizable(false);
+       ventana.initStyle(StageStyle.UNDECORATED);
        ventana.show();
-       return ventana;
     }
-   
-    
-    public static int getCodigo() {
+     
+     public static int getCodigo() {
         return codigo;
-    }
+     }
 
 }

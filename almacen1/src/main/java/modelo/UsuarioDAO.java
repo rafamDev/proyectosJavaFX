@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modelo;
 
-
-import controlador.ControladorLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,10 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pojo.Usuario;
 
-/**
- *
- * @author rafam
- */
+
 public class UsuarioDAO {
     
     private MySQLconexion mycon;
@@ -83,7 +74,7 @@ public class UsuarioDAO {
              ps.setString(2,usuario.getApellido());
              ps.setString(3,usuario.getPassword());
              ps.setString(4,usuario.getSeccion());
-             ps.setBoolean(5,usuario.isAdministrador());
+             ps.setBoolean(5,usuario.getAdministrador());
              ps.executeUpdate();
          } catch (SQLException ex) {
            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);

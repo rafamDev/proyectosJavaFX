@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package vista;
 
+package vista;
 
 import controlador.ControladorConNavegabilidad;
 import java.io.IOException;
@@ -16,10 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
-/**
- *
- * @author rafam
- */
 public class LayoutPane extends BorderPane{
        
     private Map<String,Node> pantallaDeAplicacion;

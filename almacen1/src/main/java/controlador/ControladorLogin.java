@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador;
 
 import java.net.URL;
@@ -17,10 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modelo.UsuarioDAO;
 
-/**
- *
- * @author rafam
- */
+
 public class ControladorLogin extends ControladorConNavegabilidad implements Initializable{
     
     private UsuarioDAO usuarioDAO;
@@ -44,7 +37,7 @@ public class ControladorLogin extends ControladorConNavegabilidad implements Ini
        if(loginOK == true){
          this.abrirPantalla("almacen","/img/icono.png");
        }else{
-          this.error.setText("Las credenciales ingresadas son incorrectas");
+         this.error.setText("Las credenciales ingresadas son incorrectas");
        }
     }
     

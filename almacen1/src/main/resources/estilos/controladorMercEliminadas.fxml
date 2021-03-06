@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.geometry.Insets?>
+
+<VBox styleClass="VBox" xmlns:fx="http://javafx.com/fxml/1" spacing="20" fx:controller="controlador.ControladorMercEliminadas">
+    
+      <StackPane prefHeight="300.0" prefWidth="803.0" HBox.hgrow="ALWAYS">
+        <TableView fx:id="tabla_mercanciasEliminadas" prefHeight="100.0" prefWidth="600.0"> 
+            <columns>
+              <TableColumn text="Codigo">
+                  <cellValueFactory>
+                    <PropertyValueFactory property="codigo" /> 
+                 </cellValueFactory>
+              </TableColumn>
+            </columns>  
+            <columns>  
+             <TableColumn text="Nombre">
+                  <cellValueFactory>
+                    <PropertyValueFactory property="nombre" /> 
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>    
+            <columns>  
+              <TableColumn text="Tipo">
+                  <cellValueFactory>
+                    <PropertyValueFactory property="tipo" /> 
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>  
+            
+             <columns>  
+              <TableColumn text="Origen">
+                  <cellValueFactory>
+                    
+                        <PropertyValueFactory property="origen" /> 
+                      
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>  
+            
+             <columns>  
+              <TableColumn text="Destino">
+                  <cellValueFactory>
+                 
+                       <PropertyValueFactory property="destino" /> 
+                      
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>  
+            
+             <columns>  
+              <TableColumn text="Naturaleza">
+                  <cellValueFactory>
+                 
+                       <PropertyValueFactory property="naturaleza" /> 
+                      
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>  
+           
+              <columns>  
+              <TableColumn text="Fech/Alta">
+                  <cellValueFactory>
+                 
+                       <PropertyValueFactory property="fecha_alta" /> 
+                      
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>  
+            
+               <columns>  
+              <TableColumn text="Fech/Mod">
+                  <cellValueFactory>
+                 
+                       <PropertyValueFactory property="fecha_modificacion" /> 
+                      
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>   
+            
+             
+            <columns>  
+              <TableColumn text="Fech/Baja">
+                  <cellValueFactory>
+                 
+                       <PropertyValueFactory property="fecha_baja" /> 
+                      
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>   
+             
+             
+            <columns>  
+              <TableColumn text="Observacion">
+                  <cellValueFactory>
+                 
+                       <PropertyValueFactory property="observaciones" /> 
+                      
+                  </cellValueFactory>
+              </TableColumn>
+            </columns>      
+            
+      </TableView>
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+      </StackPane>
+     
+</VBox>
+

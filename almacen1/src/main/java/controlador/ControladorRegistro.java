@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador;
 
 import java.net.URL;
@@ -19,16 +15,11 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.print.ServiceUIFactory;
-
+import javafx.stage.StageStyle;
 import modelo.UsuarioDAO;
 import pojo.Usuario;
 
 
-/**
- *
- * @author rafam
- */
 public class ControladorRegistro extends ControladorConNavegabilidad implements Initializable{
 
     private Usuario usuario;
@@ -56,7 +47,6 @@ public class ControladorRegistro extends ControladorConNavegabilidad implements 
     @FXML
     Text error;
 
-    private boolean isAdministrador;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,9 +93,8 @@ public class ControladorRegistro extends ControladorConNavegabilidad implements 
         return false;
       }
       if(this.radioButtonSeleccionado() == null){
-        return false;
+         return false;
       }
-      
      return true;
     }
     
@@ -115,7 +104,7 @@ public class ControladorRegistro extends ControladorConNavegabilidad implements 
       this.usuario.setApellido(this.apellido.getText());
       this.usuario.setPassword(this.password.getText());
       this.usuario.setSeccion(this.seccion.getSelectionModel().getSelectedItem().toString());
-      this.usuario.setAdministrador(false);
+      this.usuario.createAdministrador(this.radioButtonSeleccionado().getText());
     }
   
     public void registrar(){
@@ -141,14 +130,16 @@ public class ControladorRegistro extends ControladorConNavegabilidad implements 
        ventana.setScene(this.layout.getScene());
        ventana.getIcons().add(new Image("/img/login.png")); 
        ventana.setResizable(false);
+       ventana.initStyle(StageStyle.UNDECORATED);
        ventana.show();
+       
     }
 
    private void dialogoInformacion(){
       Alert dialogoInformacion = new Alert(Alert.AlertType.INFORMATION);
       dialogoInformacion.setTitle("Registro de usuarios");
       dialogoInformacion.setHeaderText(null);
-      dialogoInformacion.setContentText("Usuario: " + this.nombre.getText() + " registrado con exito");
+      dialogoInformacion.setContentText("Usuario registrado con exito");
       dialogoInformacion.showAndWait();
    }
 

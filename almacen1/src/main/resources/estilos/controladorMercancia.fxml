@@ -63,8 +63,11 @@
          <Menu text="Usuarios">     
             <MenuItem text="Ver usuarios por seccion" onAction="#mostrarPantallaChart" />
          </Menu>
-         <Menu text="Historico">
-            <MenuItem text="Ver mercancias eliminadas" />
+         <Menu text="Mercancias">
+            <MenuItem text="Ver mercancias eliminadas" onAction="#mostrarMercanciasEliminadas"/>
+         </Menu>
+         <Menu text="Herramientas">
+            <MenuItem text="Cambiar de usuario" onAction="#cambiarDeUsuario"/>
          </Menu>
          </MenuBar> 
      </children>

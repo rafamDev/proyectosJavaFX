@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pojo;
 
-/**
- *
- * @author rafam
- */
 public class Usuario {
+    
     private int codigo;
     private String nombre;
     private String apellido;
     private String password;
     private String seccion;
-    private boolean administrador;
+    private boolean isAdministrador;
     
     public Usuario(String nombre, String password) {
         this.nombre = nombre;
@@ -25,7 +18,7 @@ public class Usuario {
     public Usuario() {}
     
     public int getCodigo() {
-        return codigo;
+        return this.codigo;
     }
 
     public void setCodigo(int codigo) {
@@ -33,7 +26,7 @@ public class Usuario {
     }
     
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
@@ -41,7 +34,7 @@ public class Usuario {
     }
     
     public String getApellido() {
-        return apellido;
+        return this.apellido;
     }
 
     public void setApellido(String apellido) {
@@ -49,7 +42,7 @@ public class Usuario {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -57,19 +50,28 @@ public class Usuario {
     }
 
     public String getSeccion() {
-        return seccion;
+        return this.seccion;
     }
 
     public void setSeccion(String seccion) {
         this.seccion = seccion;
     }
 
-    public boolean isAdministrador() {
-        return administrador;
+    public void createAdministrador(String opcion) {
+        if(opcion.equalsIgnoreCase("si")){
+           this.isAdministrador = true;
+        }
+        if(opcion.equalsIgnoreCase("no")){
+           this.isAdministrador = false;
+        }
     }
 
-    public void setAdministrador(boolean administrador) {
-        this.administrador = administrador;
+    public void setAdministrador(boolean isAdministrador) {
+        this.isAdministrador = isAdministrador;
+    }
+
+    public boolean getAdministrador() {
+        return this.isAdministrador;
     }
 
     

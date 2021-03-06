@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pojo;
 
 import java.sql.Timestamp;
 
-
-/**
- *
- * @author rafam
- */
 public class Mercancia {
   
     private int codigo;
@@ -22,6 +13,7 @@ public class Mercancia {
     private String naturaleza;
     private Timestamp fecha_alta;
     private Timestamp fecha_modificacion;
+    private Timestamp fecha_baja;
     private String observaciones;  
    
     public Mercancia() {}
@@ -88,6 +80,14 @@ public class Mercancia {
 
     public void setFecha_modificacion(Timestamp fecha_modificacion) {
         this.fecha_modificacion = fecha_modificacion;
+    }
+
+    public Timestamp getFecha_baja() {
+        return fecha_baja;
+    }
+
+    public void setFecha_baja(Timestamp fecha_baja) {
+        this.fecha_baja = fecha_baja;
     }
 
     public String getObservaciones() {

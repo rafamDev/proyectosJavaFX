@@ -1,42 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package modelo;
 
+package modelo;
 
 import controlador.ControladorMercancia;
 import java.sql.Connection;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.Alert;
 import pojo.Mercancia;
 
-/**
- *
- * @author rafam
- */
 public class MercanciaDAO {
     
    private MySQLconexion mycon;
   
     public MercanciaDAO() {
      this.mycon = new MySQLconexion("almacen");
-     this.crearTabla();
+     this.crearTablaMercancia();
+     this.crearTablaMercancia_eliminada();
    }
    
-    private void crearTabla(){
+    private void crearTablaMercancia(){
       Connection con = null;
       Statement st = null; 
       String query = "CREATE TABLE IF NOT EXISTS mercancia" + "( codigo INTEGER NOT NULL auto_increment, " 
@@ -44,9 +32,26 @@ public class MercanciaDAO {
                 + "origen VARCHAR(255) NOT NULL," + "destino VARCHAR(255) NOT NULL," 
                 + "naturaleza VARCHAR(255) NOT NULL," + "fecha_alta TIMESTAMP NOT NULL,"
                 + "fecha_modificacion TIMESTAMP NULL," + "observaciones VARCHAR(255) NULL," 
-                + "codigoUsuario INTEGER(4) NOT NULL," + "PRIMARY KEY(codigo)" + " )";
+                + "PRIMARY KEY(codigo)" + " )";
      
           try {
+              con = this.mycon.getMySQLconexion();
+              st = con.createStatement();
+              st.executeUpdate(query);
+          } catch (Exception ex) {
+              Logger.getLogger(MercanciaDAO.class.getName()).log(Level.SEVERE, null, ex);
+          }
+    }
+    
+    private void crearTablaMercancia_eliminada(){
+      Connection con = null;
+      Statement st = null; 
+      String query = "CREATE TABLE IF NOT EXISTS mercancia_eliminada" + "( id INTEGER NOT NULL auto_increment, " 
+                + "codigo INTEGER NOT NULL, nombre VARCHAR(255) NOT NULL," + "tipo VARCHAR(255) NOT NULL," 
+                + "origen VARCHAR(255) NOT NULL," + "destino VARCHAR(255) NOT NULL," + "naturaleza VARCHAR(255) NOT NULL,"
+                + "fecha_alta TIMESTAMP NOT NULL, fecha_baja TIMESTAMP NOT NULL," + "fecha_modificacion TIMESTAMP NULL," 
+                + "observaciones VARCHAR(255) NULL, PRIMARY KEY(id)" + " )";
+        try {
               con = this.mycon.getMySQLconexion();
               st = con.createStatement();
               st.executeUpdate(query);
@@ -152,5 +157,36 @@ public class MercanciaDAO {
     return lista_mercancia;
    }
 
+    public ArrayList<Mercancia> getMercanciasEliminadasBDD(){
+     ArrayList<Mercancia> lista_mercancia = new ArrayList<Mercancia>();
+       Connection conexion = null;
+        Statement st = null;
+        ResultSet rs = null;
+         String query = "SELECT * FROM mercancia_eliminada " 
+                      + "WHERE codigo IN (SELECT MAX(codigo) FROM mercancia_eliminada GROUP BY fecha_baja) "
+                      + "ORDER BY codigo ASC";
+         conexion = this.mycon.getMySQLconexion();
+       try {
+           st = conexion.createStatement();
+           rs = st.executeQuery(query);
+             while(rs.next()){
+              Mercancia mercancia = new Mercancia();
+                mercancia.setCodigo(rs.getInt("codigo"));
+                mercancia.setNombre(rs.getString("nombre"));
+                mercancia.setTipo(rs.getString("tipo"));
+                mercancia.setOrigen(rs.getString("origen"));
+                mercancia.setDestino(rs.getString("destino"));
+                mercancia.setNaturaleza(rs.getString("naturaleza"));
+                mercancia.setFecha_alta(rs.getTimestamp("fecha_alta"));
+                mercancia.setFecha_modificacion(rs.getTimestamp("fecha_modificacion"));
+                mercancia.setFecha_baja(rs.getTimestamp("fecha_baja"));
+                mercancia.setObservaciones(rs.getString("observaciones"));
+                lista_mercancia.add(mercancia);
+             }
+       } catch (SQLException ex) {
+           Logger.getLogger(MercanciaDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    return lista_mercancia;
+   }
 }
 
