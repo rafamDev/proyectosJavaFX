@@ -164,7 +164,7 @@ public class MercanciaDAO {
         ResultSet rs = null;
          String query = "SELECT * FROM mercancia_eliminada " 
                       + "WHERE codigo IN (SELECT MAX(codigo) FROM mercancia_eliminada GROUP BY fecha_baja) "
-                      + "ORDER BY codigo ASC";
+                      + "ORDER BY codigo DESC";
          conexion = this.mycon.getMySQLconexion();
        try {
            st = conexion.createStatement();
