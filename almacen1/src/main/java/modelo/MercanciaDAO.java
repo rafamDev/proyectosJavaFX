@@ -2,8 +2,8 @@
 package modelo;
 
 import controlador.ControladorMercancia;
+import controlador.Pdf;
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -162,9 +162,7 @@ public class MercanciaDAO {
        Connection conexion = null;
         Statement st = null;
         ResultSet rs = null;
-         String query = "SELECT * FROM mercancia_eliminada " 
-                      + "WHERE codigo IN (SELECT MAX(codigo) FROM mercancia_eliminada GROUP BY fecha_baja) "
-                      + "ORDER BY codigo DESC";
+         String query = "SELECT * FROM mercancia_eliminada ORDER BY codigo DESC";
          conexion = this.mycon.getMySQLconexion();
        try {
            st = conexion.createStatement();
@@ -188,5 +186,17 @@ public class MercanciaDAO {
        }
     return lista_mercancia;
    }
+    
+    public void crearPDF(){
+       Pdf pdf = new Pdf("D:/pruebas/MercanciasEliminadas.pdf");
+       pdf.setQuery("SELECT * FROM mercancia_eliminada");
+       pdf.setFecha_seleccionada("fecha_baja");
+       pdf.generarPDF(this.mycon);
+       
+       Pdf pdf2 = new Pdf("D:/pruebas/MercanciasActuales.pdf");
+       pdf2.setQuery("SELECT * FROM mercancia");
+       pdf2.setFecha_seleccionada("fecha_modificacion");
+       pdf2.generarPDF(this.mycon);
+    }
 }
 

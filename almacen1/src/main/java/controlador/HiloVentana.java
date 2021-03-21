@@ -18,8 +18,7 @@ public class HiloVentana implements Runnable{
     private String ruta_icono;
     
     public HiloVentana(String titulo){
-        super();
-        this.titulo = titulo;
+       this.titulo = titulo;
     }
 
     public void setRutaFXML(String ruta_fxml) {

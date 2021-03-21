@@ -7,6 +7,7 @@ modelo\MercanciaDAO.class
 vista\LayoutPane.class
 controlador\ControladorRegistro.class
 modelo\MySQLconexion.class
+controlador\Pdf.class
 pojo\Usuario.class
 controlador\ControladorMercEliminadas.class
 controlador\HiloVentana.class

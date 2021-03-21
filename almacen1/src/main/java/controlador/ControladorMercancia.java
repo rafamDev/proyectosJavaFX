@@ -311,6 +311,10 @@ public class ControladorMercancia extends ControladorConNavegabilidad implements
        hiloMercEliminadas.run();
     }
     
+    public void crearPDF(){
+      this.mercanciaDAO.crearPDF();
+    }
+    
     public void cambiarDeUsuario(){
        Stage ventana = (Stage) this.layout.getScene().getWindow();
        ventana.hide();
