@@ -114,6 +114,14 @@ public class ControladorMercancia extends ControladorConNavegabilidad implements
             dialogoInformacion.setContentText("Mercancia con codigo: " + codigo + " exitosamente modificada");
             dialogoInformacion.showAndWait();
         }
+        
+        if(funcion.equals("visualizarPDF")){
+            dialogoInformacion.setTitle("Creacion de PDF");
+            dialogoInformacion.setHeaderText(null);
+            dialogoInformacion.setContentText("PDF creado exitosamente");
+            dialogoInformacion.showAndWait();
+        }
+        
         if(funcion.equals("error")){
             dialogoInformacion.setTitle("Error");
             dialogoInformacion.setHeaderText(null);
@@ -310,9 +318,15 @@ public class ControladorMercancia extends ControladorConNavegabilidad implements
        hiloMercEliminadas.setRuta_icono("/img/borrar.png");
        hiloMercEliminadas.run();
     }
+   
+    public void crearPDF_Actuales(){
+      this.dialogoInformacion("visualizarPDF");
+      this.mercanciaDAO.crearPDF_Actuales();
+    }
     
-    public void crearPDF(){
-      this.mercanciaDAO.crearPDF();
+    public void crearPDF_Eliminadas(){
+      this.dialogoInformacion("visualizarPDF");
+      this.mercanciaDAO.crearPDF_Eliminadas();
     }
     
     public void cambiarDeUsuario(){

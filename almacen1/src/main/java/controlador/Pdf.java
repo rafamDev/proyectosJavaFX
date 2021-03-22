@@ -10,7 +10,9 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import java.awt.Desktop;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -60,6 +62,7 @@ public class Pdf {
             document.close();
             st.close();
             con.close();
+            this.abrirPDF();
         } catch (DocumentException ex) {
             Logger.getLogger(Pdf.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
@@ -128,4 +131,13 @@ public class Pdf {
        return tabla2; 
     }
  
+    private void abrirPDF(){
+        try {
+            File file = new File(this.ruta);
+            Desktop desktop = Desktop.getDesktop();
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(Pdf.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

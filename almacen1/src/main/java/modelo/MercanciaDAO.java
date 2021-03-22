@@ -58,6 +58,12 @@ public class MercanciaDAO {
           } catch (Exception ex) {
               Logger.getLogger(MercanciaDAO.class.getName()).log(Level.SEVERE, null, ex);
           }
+      //Se compone mediante el siguiente TRIGGER:
+         /* CREATE TRIGGER mercancia_eliminada_trigger_AD AFTER DELETE ON mercancia
+            FOR EACH ROW 
+            INSERT INTO mercancia_eliminada(codigo,nombre,tipo,origen,destino,naturaleza,fecha_alta,fecha_modificacion,fecha_baja,observaciones)
+            VALUES(OLD.codigo,OLD.nombre,OLD.tipo,OLD.origen,OLD.destino,OLD.naturaleza,OLD.fecha_alta,OLD.fecha_modificacion,NOW(),OLD.observaciones);
+         */
     }
 
     private Timestamp fecha_actual(){
@@ -129,8 +135,8 @@ public class MercanciaDAO {
    } 
     
     public ArrayList<Mercancia> getMercanciasBDD(){
-     ArrayList<Mercancia> lista_mercancia = new ArrayList<Mercancia>();
-       Connection conexion = null;
+      ArrayList<Mercancia> lista_mercancia = new ArrayList<Mercancia>();
+        Connection conexion = null;
         Statement st = null;
         ResultSet rs = null;
          String query = "SELECT * FROM mercancia ORDER BY codigo";
@@ -158,8 +164,8 @@ public class MercanciaDAO {
    }
 
     public ArrayList<Mercancia> getMercanciasEliminadasBDD(){
-     ArrayList<Mercancia> lista_mercancia = new ArrayList<Mercancia>();
-       Connection conexion = null;
+      ArrayList<Mercancia> lista_mercancia = new ArrayList<Mercancia>();
+        Connection conexion = null;
         Statement st = null;
         ResultSet rs = null;
          String query = "SELECT * FROM mercancia_eliminada ORDER BY codigo DESC";
@@ -187,16 +193,18 @@ public class MercanciaDAO {
     return lista_mercancia;
    }
     
-    public void crearPDF(){
+    public void crearPDF_Actuales(){
+       Pdf pdf = new Pdf("D:/pruebas/MercanciasActuales.pdf");
+       pdf.setQuery("SELECT * FROM mercancia");
+       pdf.setFecha_seleccionada("fecha_modificacion");
+       pdf.generarPDF(this.mycon); 
+    }
+    
+    public void crearPDF_Eliminadas(){
        Pdf pdf = new Pdf("D:/pruebas/MercanciasEliminadas.pdf");
        pdf.setQuery("SELECT * FROM mercancia_eliminada");
        pdf.setFecha_seleccionada("fecha_baja");
        pdf.generarPDF(this.mycon);
-       
-       Pdf pdf2 = new Pdf("D:/pruebas/MercanciasActuales.pdf");
-       pdf2.setQuery("SELECT * FROM mercancia");
-       pdf2.setFecha_seleccionada("fecha_modificacion");
-       pdf2.generarPDF(this.mycon);
     }
 }
 

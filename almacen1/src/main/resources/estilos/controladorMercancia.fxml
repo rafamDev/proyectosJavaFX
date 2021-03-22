@@ -70,7 +70,8 @@
             <MenuItem text="Cambiar de usuario" onAction="#cambiarDeUsuario"/>
          </Menu>
           <Menu text="Informacion">
-            <MenuItem text="Mercancias Eliminadas (PDF)" onAction="#crearPDF"/>
+            <MenuItem text="Mercancias Actuales (PDF)" onAction="#crearPDF_Actuales"/>  
+            <MenuItem text="Mercancias Eliminadas (PDF)" onAction="#crearPDF_Eliminadas"/>
          </Menu>
          </MenuBar> 
      </children>
